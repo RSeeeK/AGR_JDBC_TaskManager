@@ -1,5 +1,5 @@
-import entity.Tasks;
-import service.TasksService;
+import entity.Task;
+import service.TaskService;
 import util.Util;
 
 import java.sql.Connection;
@@ -9,8 +9,8 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         try (Connection connection = Util.getConnection()) {
-            TasksService tasksService = new TasksService(connection);
-//            Tasks secondTask = new Tasks();
+            TaskService taskService = new TaskService(connection);
+//            Task secondTask = new Task();
 //            secondTask.setId(2);
 //            secondTask.setCompleted(false);
 //            secondTask.setName("Test2");
@@ -18,12 +18,12 @@ public class Main {
 //            secondTask.setImportance_id(2);
 //            secondTask.setReminder_id(1);
 //
-//            tasksService.add(secondTask);
-//            tasksService.update(secondTask);
-//            tasksService.remove(secondTask);
+//            taskService.add(secondTask);
+//            taskService.update(secondTask);
+//            taskService.remove(secondTask);
 
-            List<Tasks> tasks = tasksService.getAll();
-            for (Tasks task:
+            List<Task> tasks = taskService.getAll();
+            for (Task task:
                  tasks) {
                 System.out.println(task);
             }

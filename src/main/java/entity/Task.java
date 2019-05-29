@@ -1,6 +1,6 @@
 package entity;
 
-public class Tasks {
+public class Task {
     private long id;
     private String name;
     private String description;
@@ -8,7 +8,7 @@ public class Tasks {
     private long reminder_id;
     private Boolean completed;
 
-    public Tasks() {
+    public Task() {
 
     }
 
@@ -65,13 +65,13 @@ public class Tasks {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tasks tasks = (Tasks) o;
+        Task task = (Task) o;
 
-        if (id != tasks.id) return false;
-        if (importance_id != tasks.importance_id) return false;
-        if (reminder_id != tasks.reminder_id) return false;
-        if (name != null ? !name.equals(tasks.name) : tasks.name != null) return false;
-        return description != null ? description.equals(tasks.description) : tasks.description == null;
+        if (id != task.id) return false;
+        if (importance_id != task.importance_id) return false;
+        if (reminder_id != task.reminder_id) return false;
+        if (name != null ? !name.equals(task.name) : task.name != null) return false;
+        return description != null ? description.equals(task.description) : task.description == null;
 
     }
 
@@ -87,7 +87,7 @@ public class Tasks {
 
     @Override
     public String toString() {
-        return "Tasks{" +
+        return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

@@ -1,13 +1,13 @@
 package service;
 
-import dao.ImportanceDAO;
+import dao.Entity_CRUD;
 import entity.Importance;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImportanceService implements ImportanceDAO {
+public class ImportanceService implements Entity_CRUD<Importance> {
     private Connection connection;
 
     public ImportanceService(Connection connection) {
@@ -15,7 +15,7 @@ public class ImportanceService implements ImportanceDAO {
     }
 
     @Override
-    public void add(Importance importance) {
+    public void create(Importance importance) {
         if (connection == null) {
             return;
         }
@@ -60,7 +60,7 @@ public class ImportanceService implements ImportanceDAO {
     }
 
     @Override
-    public Importance getByID(long ID) {
+    public Importance getByID(Long ID) {
         Importance importance = null;
 
         if (connection == null) {
@@ -107,7 +107,7 @@ public class ImportanceService implements ImportanceDAO {
     }
 
     @Override
-    public void remove(Importance importance) {
+    public void delete(Importance importance) {
         if (connection == null) {
             return;
         }

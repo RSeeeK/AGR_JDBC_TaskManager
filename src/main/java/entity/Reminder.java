@@ -2,12 +2,12 @@ package entity;
 
 import java.sql.Date;
 
-public class Reminders {
+public class Reminder {
     private long id;
     private String description;
     private Date reminderTime;
 
-    public Reminders() {
+    public Reminder() {
 
     }
 
@@ -40,12 +40,12 @@ public class Reminders {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Reminders reminders = (Reminders) o;
+        Reminder reminder = (Reminder) o;
 
-        if (id != reminders.id) return false;
-        if (description != null ? !description.equals(reminders.description) : reminders.description != null)
+        if (id != reminder.id) return false;
+        if (description != null ? !description.equals(reminder.description) : reminder.description != null)
             return false;
-        return reminderTime != null ? reminderTime.equals(reminders.reminderTime) : reminders.reminderTime == null;
+        return reminderTime != null ? reminderTime.equals(reminder.reminderTime) : reminder.reminderTime == null;
 
     }
 
@@ -59,7 +59,7 @@ public class Reminders {
 
     @Override
     public String toString() {
-        return "Reminders{" +
+        return "Reminder{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", reminderTime=" + reminderTime +

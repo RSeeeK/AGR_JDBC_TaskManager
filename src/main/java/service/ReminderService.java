@@ -1,21 +1,21 @@
 package service;
 
-import dao.RemindersDAO;
-import entity.Reminders;
+import dao.Entity_CRUD;
+import entity.Reminder;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RemindersService implements RemindersDAO {
+public class ReminderService implements Entity_CRUD<Reminder> {
     private Connection connection;
 
-    public RemindersService(Connection connection) {
+    public ReminderService(Connection connection) {
         this.connection = connection;
     }
 
     @Override
-    public void add(Reminders reminder) {
+    public void create(Reminder reminder) {
         if (connection == null) {
             return;
         }
@@ -36,8 +36,8 @@ public class RemindersService implements RemindersDAO {
     }
 
     @Override
-    public List<Reminders> getAll() {
-        List<Reminders> reminders = new ArrayList<>();
+    public List<Reminder> getAll() {
+        List<Reminder> reminders = new ArrayList<>();
 
         if (connection == null) {
             return reminders;
@@ -48,7 +48,7 @@ public class RemindersService implements RemindersDAO {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             while (resultSet.next()) {
-                Reminders reminder = new Reminders();
+                Reminder reminder = new Reminder();
                 reminder.setId(resultSet.getLong("ID"));
                 reminder.setReminderTime(resultSet.getDate("NAME"));
                 reminder.setDescription(resultSet.getString("DESCRIPTION"));
@@ -62,8 +62,8 @@ public class RemindersService implements RemindersDAO {
     }
 
     @Override
-    public Reminders getByID(long ID) {
-        Reminders reminder = null;
+    public Reminder getByID(Long ID) {
+        Reminder reminder = null;
 
         if (connection == null) {
             return reminder;
@@ -76,7 +76,7 @@ public class RemindersService implements RemindersDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            reminder = new Reminders();
+            reminder = new Reminder();
             reminder.setId(resultSet.getLong("ID"));
             reminder.setDescription(resultSet.getString("DESCRIPTION"));
             reminder.setReminderTime(resultSet.getDate("REMINDER_TIME"));
@@ -88,7 +88,7 @@ public class RemindersService implements RemindersDAO {
     }
 
     @Override
-    public void update(Reminders reminder) {
+    public void update(Reminder reminder) {
         if (connection == null) {
             return;
         }
@@ -109,7 +109,7 @@ public class RemindersService implements RemindersDAO {
     }
 
     @Override
-    public void remove(Reminders reminder) {
+    public void delete(Reminder reminder) {
         if (connection == null) {
             return;
         }

@@ -1,21 +1,21 @@
 package service;
 
-import dao.TasksDAO;
-import entity.Tasks;
+import dao.Entity_CRUD;
+import entity.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TasksService implements TasksDAO {
+public class TaskService implements Entity_CRUD<Task> {
 
     private Connection connection;
 
-    public TasksService(Connection connection) {
+    public TaskService(Connection connection) {
         this.connection = connection;
     }
 
-    public void add(Tasks task) {
+    public void create(Task task) {
         if (connection == null) {
             return;
         }
@@ -38,8 +38,8 @@ public class TasksService implements TasksDAO {
         }
     }
 
-    public List<Tasks> getAll() {
-        List<Tasks> tasks = new ArrayList<>();
+    public List<Task> getAll() {
+        List<Task> tasks = new ArrayList<>();
 
         if (connection == null) {
             return tasks;
@@ -50,7 +50,7 @@ public class TasksService implements TasksDAO {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sqlQuery);
             while (resultSet.next()) {
-                Tasks task = new Tasks();
+                Task task = new Task();
                 task.setId(resultSet.getLong("ID"));
                 task.setName(resultSet.getString("NAME"));
                 task.setDescription(resultSet.getString("DESCRIPTION"));
@@ -66,8 +66,8 @@ public class TasksService implements TasksDAO {
         return tasks;
     }
 
-    public Tasks getByID(long ID) {
-        Tasks task = null;
+    public Task getByID(Long ID) {
+        Task task = null;
 
         if (connection == null) {
             return task;
@@ -80,7 +80,7 @@ public class TasksService implements TasksDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            task = new Tasks();
+            task = new Task();
             task.setId(resultSet.getLong("ID"));
             task.setName(resultSet.getString("NAME"));
             task.setDescription(resultSet.getString("DESCRIPTION"));
@@ -95,7 +95,7 @@ public class TasksService implements TasksDAO {
         return task;
     }
 
-    public void update(Tasks task) {
+    public void update(Task task) {
         if (connection == null) {
             return;
         }
@@ -119,7 +119,7 @@ public class TasksService implements TasksDAO {
         }
     }
 
-    public void remove(Tasks task) {
+    public void delete(Task task) {
         if (connection == null) {
             return;
         }
