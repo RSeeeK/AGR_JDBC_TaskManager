@@ -20,12 +20,14 @@ public class Main {
 //
 //            tasksService.add(secondTask);
 //            tasksService.update(secondTask);
+//            tasksService.remove(secondTask);
 
             List<Tasks> tasks = tasksService.getAll();
             for (Tasks task:
                  tasks) {
                 System.out.println(task);
             }
+
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
